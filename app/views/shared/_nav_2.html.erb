@@ -1,0 +1,51 @@
+<nav class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-brand">
+			<a href="/index" class="navbar-brand">
+				<%= image_tag('car.svg') %>
+			</a>
+		</div>
+		<% if user_signed_in? %>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<%= link_to 'Vender', new_pin_path %>
+				</li>
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Mi cuenta">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					</a>
+					<ul class="dropdown-menu">
+            <li>
+	            <%= link_to 'Mis autos', my_cars_path %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+            	<%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+				</li>
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Favoritos">
+						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+					</a>
+					<ul class="dropdown-menu">
+            <li>
+	            <%= link_to 'Mis autos', my_cars_path %>
+            </li>
+            <li role="separator" class="divider"></li>
+            
+          </ul>
+				</li>
+			</ul>
+		<% else %>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<%= link_to 'Registro', new_user_registration_path %>
+				</li>
+				<li>
+					<%= link_to 'Entrar', new_user_session_path %>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+</nav>

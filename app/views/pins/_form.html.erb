@@ -1,0 +1,35 @@
+
+
+<!-- usando simple form -->
+<%= simple_form_for(@pin, html: { multipart: true, class: ''}) do |f| %>
+  <%= f.input :title, input_html: {class: 'form-control'}, label: false, placeholder: 'Modelo', error: 'Obligatorio', required: true, maxlength: 60 %>
+  <br>
+  <%= f.input :desc, label: false, placeholder: 'Descripcion', required: true, maxlength: 60 %>
+  <%= f.input :km, input_html: {min: 0, max: 900000}, required: true, label: false, placeholder: 'Kilometraje' %>
+  <%= f.input :year, collection: 1900..(Date.today.year + 1), required: true, label: false, prompt: 'Año' %>
+
+  <div class="input-group">
+    <span class="input-group-addon">$</span>
+    <%= f.input :price, required: true, label: false, class: "rounded round", placeholder: 'Precio', input_html: {min: 0, max: 9000000} %>
+  </div> <br>
+
+
+
+
+  <%= f.input :doors, required: true, label: false, placeholder: 'Puertas', input_html: {min: 2, max: 9} %>
+  <%= f.input :color, required: true, label: false, placeholder: 'Color' %>
+  <%= f.input :gasoline, required: true, label: false, prompt: 'Tipo de gasolina', collection: Pin::Gasoline %>
+  <%= f.input :transmission, required: true, label: false, placeholder: 'Tipo de transmisión' %>
+  <%= f.input :brand_id, collection: @brands, required: true, label: false, prompt: 'Marca' %>
+
+  <%= f.input :air, label: "¿Aire acondicionado?" %>
+  <%= f.input :ambiental_verification, label: "¿Verificación ambiental?" %>
+  <%= f.input :tenencias_pagadas, label: "¿Todas las tenencias pagadas?" %>
+  
+  <%= f.input :state_id, collection: @states, required: true, label: false, prompt: 'Estado' %>
+  <%= f.input :city, required: true, label: false, placeholder: 'Ciudad' %>
+  <%= f.input :phone, required: true, label: false, placeholder: 'Teléfono de contacto', input_html: {min: 0, max: 9999999999} %>
+
+  <%= f.button :submit, 'Guardar', class: 'btn btn-primary' %>
+<% end %>
+

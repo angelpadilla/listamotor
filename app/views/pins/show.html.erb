@@ -1,0 +1,28 @@
+
+
+
+
+<p>
+  <strong>Title:</strong>
+  <%= @pin.title %>
+</p>
+
+<p>
+  <strong>Desc:</strong>
+  <%= @pin.desc %>
+</p>
+
+<p>By: <%= @pin.user.email %></p>
+
+<% if user_signed_in? %>
+	<p>
+		
+		<%= number_to_phone @pin.phone %>
+	</p>
+<% end %>
+
+<% if its_mine? @pin %>
+	<%= link_to 'Edit', edit_pin_path(@pin) %> |
+<% end %>
+
+<%= link_to 'Back', root_path %>

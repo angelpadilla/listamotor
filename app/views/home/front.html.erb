@@ -1,0 +1,23 @@
+
+
+	<div class="row text-center">
+
+		<div class="image-header">
+			<%= image_tag('car.svg') %>
+		</div>
+		
+		<%= search_form_for(@q, url: index_path, html:{class: "form-inline", role: "search"}) do |f| %>
+					<div class="form-group">
+						<%= f.search_field :title_cont, placeholder: 'modelo, palabra clave...', class: "form-control" %>
+						<%= f.collection_select :state_id_eq, @states, :id, :title, {prompt: 'Todos los estados'}, class: "form-control" %>
+						<%= f.collection_select :brand_id_eq, @brands, :id, :title, {prompt: 'Todos las marcas'}, class: "form-control" %>
+						<%= f.select :year_eq, 1886..(Date.today.year + 1), {prompt: 'Todos los años'}, class: "form-control" %>
+					</div>
+					<%= f.submit 'Buscar', class: "btn btn-success" %>
+		<% end %>
+	</div>
+
+
+
+
+

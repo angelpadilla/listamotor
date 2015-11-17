@@ -1,0 +1,71 @@
+<nav class="navbar navbar-inverse">
+	<div class="container">
+		<div class="navbar-brand">
+			<a href="/index" class="navbar-brand">
+				<%= image_tag('car.svg') %>
+			</a>
+		</div>
+		<%= search_form_for(@q, url: index_path, html:{class: "navbar-form navbar-left", role: "search"}) do |f| %>
+			<div class="form-group">
+				<%= f.search_field :title_cont, placeholder: 'modelo, palabra clave...', class: "form-control	" %>
+				<%= f.collection_select :state_id_eq, @states, :id, :title, {prompt: 'Todos los estados'}, class: "form-control" %>
+				<%= f.collection_select :brand_id_eq, @brands, :id, :title, {prompt: 'Todos las marcas'}, class: "form-control" %>
+				<%= f.select :year_eq, 1886..(Date.today.year + 1), {prompt: 'Todos los años'}, class: "form-control" %>
+			</div>
+			<%= f.submit 'Buscar', class: "btn btn-default" %>
+		<% end %>
+
+
+
+
+		<% if user_signed_in? %>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<%= link_to 'Vender', new_pin_path %>
+				</li>
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Mi cuenta">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					</a>
+					<ul class="dropdown-menu">
+            <li>
+	            <%= link_to 'Mis autos', my_cars_path %>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li>
+            	<%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+				</li>
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Favoritos">
+						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+					</a>
+					<ul class="dropdown-menu">
+            <li>
+	            <%= link_to 'Mis autos', my_cars_path %>
+            </li>
+            <li role="separator" class="divider"></li>
+            
+          </ul>
+				</li>
+				<% if super? %>
+					<li>
+						<a href="/admin" title="Admin">
+							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						</a>
+					</li>
+				<% end %>
+			</ul>
+		<% else %>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<%= link_to 'Registro', new_user_registration_path %>
+				</li>
+				<li>
+					<%= link_to 'Entrar', new_user_session_path %>
+				</li>
+			</ul>
+		<% end %>
+	</div>
+</nav>

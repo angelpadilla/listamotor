@@ -1,0 +1,16 @@
+<h2><%= current_user.email %> productos</h2>
+
+<% @pins.each do |pin| %>
+  <%= link_to pin do %>
+    <h2><%= pin.title %></h2>
+  <% end %>
+
+  <% if user_signed_in? %>
+  	<%= link_to 'edit', edit_pin_path(pin) %>
+	  <%= link_to 'delete', pin, method: :delete, data: {confirm: 'Estas seguro?'} %>
+	<% end %>
+  <br>
+<% end %>
+
+
+<%= link_to 'New Pin', new_pin_path %>

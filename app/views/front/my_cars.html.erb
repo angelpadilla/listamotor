@@ -1,0 +1,7 @@
+
+<% @cars.each do |car| %>
+    <%= link_to pin_path(car) do %>
+	    <h2><%= car.title %></h2>
+    <% end %>
+  <br>
+<% end %>
