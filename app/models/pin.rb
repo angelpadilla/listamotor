@@ -7,7 +7,7 @@ class Pin < ActiveRecord::Base
 
 
 	Gasoline = [
-		['Gasolina'],
-		['Diesel'],
+		['Gasolina', 'gasolina'],
+		['Diesel', 'diesel'],
 	]
 end

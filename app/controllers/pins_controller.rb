@@ -2,11 +2,15 @@ class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   # before_action :check_property, only: [:edit, :update]
   skip_before_action :authenticate_user!, only: [:show]
+
+  require "uri"
+  require "net/http"
   # GET /pins
   # GET /pins.json
   def index
     # @pins = Pin.all.order(created_at: :desc)
-    @pins = current_user.pins(created_at: :desc)
+    # admin check super or editor
+    @pins = current_user.pins.order(created_at: :desc)
   end
 
   # GET /pins/1
@@ -32,18 +36,36 @@ class PinsController < ApplicationController
   # POST /pins
   # POST /pins.json
   def create
-    # @pin = Pin.new(pin_params)
-    @pin = current_user.pins.new(pin_params)
 
+    # if params[:pin]["g-recaptcha-response"]
+    #   # redirect_to new_pin_path, notice: "Por favor no olvides hacer clic al final en la casilla que dice 'No soy un robot!'" 
+    #   puts "----------------------"
+    #   puts params["pin"]["g-recaptcha-response"]
+    #   puts "----------------------"
+    # else
+    #   params = {secret: ReSecret, response: params["pin"]["g-recaptcha-response"], remoteip: current_user.current_sign_in_ip}
+    #   x = Net::HTTP.post_form(URI.parse('https://www.google.com/recaptcha/api/siteverify'), params)
+    #   puts "---------------------------------------"
+    #   puts x
+    #   puts "---------------------------------------"
+
+    #   redirect_to root_path, notice: "orales!!!"
+    # end
+
+
+
+    @pin = current_user.pins.new(pin_params)
     respond_to do |format|
-      if @pin.save
+      if verify_recaptcha(model: @pin) && @pin.save
         format.html { redirect_to @pin, notice: 'Pin was successfully created.' }
         format.json { render :show, status: :created, location: @pin }
       else
-        format.html { render :new }
+        format.html { render :new}
         format.json { render json: @pin.errors, status: :unprocessable_entity }
+        flash[:notice] = 'Se produjo un error intenta nuevamente.'
       end
     end
+
   end
 
   # PATCH/PUT /pins/1

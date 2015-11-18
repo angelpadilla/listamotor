@@ -30,6 +30,8 @@
   <%= f.input :city, required: true, label: false, placeholder: 'Ciudad' %>
   <%= f.input :phone, required: true, label: false, placeholder: 'Teléfono de contacto', input_html: {min: 0, max: 9999999999} %>
 
+  <%= recaptcha_tags %>
   <%= f.button :submit, 'Guardar', class: 'btn btn-primary' %>
+
 <% end %>
 

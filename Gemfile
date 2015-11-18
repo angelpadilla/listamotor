@@ -33,4 +33,10 @@ end
 
 gem 'puma'
 
+gem "recaptcha", :require => "recaptcha/rails"
+
+gem 'local_time'
+gem 'will_paginate', '~> 3.0'
+gem "paperclip", "~> 4.3"
+
 

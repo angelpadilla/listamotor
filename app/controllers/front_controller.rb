@@ -12,7 +12,7 @@ class FrontController < ApplicationController
   end
 
   def my_cars
-    @cars = current_user.pins.order(created_at: :desc)
+    @cars = current_user.pins.order(created_at: :desc)    
   end
 
   def stores
