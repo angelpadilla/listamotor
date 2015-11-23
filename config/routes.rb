@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :galleries
   resources :states
   resources :brands
   get '0:id', to: 'front#show', as: :store

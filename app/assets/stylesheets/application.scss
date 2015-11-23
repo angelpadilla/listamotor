@@ -29,9 +29,20 @@
 .text-center {
 	text-align: center;
 }
+.margin-auto {
+	margin: 0 auto;
+}
 .image-header {
 	img {
 		height: 30rem;
+	}
+}
+.img-container {
+	height: 30rem;
+	text-align: center;
+	img {
+		height: 100%;
+		width: 100%;
 	}
 }
 

@@ -1,0 +1,27 @@
+<div class="row">
+		<% @cars.each do |car| %>
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<div class="img-container">
+						<% unless car.galleries.blank? %>
+							<a href="<%= pin_path(car) %>">
+								<%= image_tag car.galleries.first.photo.url(:large), size: '100x100' %>
+							</a>
+						<% else %>
+							<a href="<%= pin_path(car) %>">
+								<%= image_tag 'car.svg' %>
+							</a>
+						<% end %>
+					</div>
+					<div class="caption">
+				    <%= link_to pin_path(car) do %>
+					    <h3><%= car.title %></h3>
+				    <% end %>
+						<p><%= car.desc.truncate(130) %></p>
+						<h4><%= number_to_currency(car.price) %></h4>
+					</div>
+				</div>
+			</div>
+		<% end %>
+		
+	</div>

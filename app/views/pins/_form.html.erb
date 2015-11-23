@@ -1,7 +1,35 @@
 
 
 <!-- usando simple form -->
-<%= simple_form_for(@pin, html: { multipart: true, class: ''}) do |f| %>
+<%= simple_form_for(@pin, html: {multipart: true, class: ''}) do |f| %>
+    <%= render 'shared/errors', object: @pin %>
+   <div class="panel panel-warning">
+    <div class="panel-heading">
+      Selecciona imagenes
+    </div>
+    <div class="panel-body">
+      <% unless @pin.galleries.empty? %>
+        <% @pin.galleries.each do |p| %>
+        <div class="row">
+          <div class="col-xs-6 col-md-3 text-center">
+            <%= image_tag p.photo.url(:thumb), size: "100x100", class: "thumbnail margin-auto" %>
+            <%= link_to 'eliminar', p, method: :delete, data: {confirm: "Estas seguro?"}, class: "" %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+      <% 5.times do |i| %>
+        <div class="row">
+          <div class="col-xs-6 col-md-12">
+            <%= f.input "photo_#{i}", as: :file, label: false, input_html: {class: "thumbnail"} %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+
   <%= f.input :title, input_html: {class: 'form-control'}, label: false, placeholder: 'Modelo', error: 'Obligatorio', required: true, maxlength: 60 %>
   <br>
   <%= f.input :desc, label: false, placeholder: 'Descripcion', required: true, maxlength: 60 %>
