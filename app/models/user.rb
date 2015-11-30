@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :pins
+  has_many :likes
 
   validates :name, presence: true, uniqueness: true
 
@@ -27,11 +28,11 @@ class User < ActiveRecord::Base
     self.role == requested_role.to_s
   end
 
-	# after_create :send_notification
+	after_create :send_notification
 
- #  def send_notification
- #    AdminMailer.new_user(self).deliver
- #    AdminMailer.welcome(self).deliver
- #  end
+  def send_notification
+    Admin.new_user(self).deliver
+    Admin.welcome(self).deliver
+  end
 
 end

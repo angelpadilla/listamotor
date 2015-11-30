@@ -4,7 +4,7 @@ class FrontController < ApplicationController
 
 
   def index
-  	@cars = @q.result(distinct: true).order(created_at: :desc)
+  	@cars = @q.result(distinct: true).order(updated_at: :desc)
   end
 
   def show
@@ -12,11 +12,15 @@ class FrontController < ApplicationController
   end
 
   def my_cars
-    @cars = current_user.pins.order(created_at: :desc)    
+    @cars = current_user.pins.order(updated_at: :desc)    
   end
 
   def stores
-    @stores = User.order(created_at: :desc)
+    @stores = User.order(name: :desc)
+  end
+
+  def likes
+    @likes = current_user.likes.order(created_at: :desc)
   end
 
   private

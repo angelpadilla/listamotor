@@ -4,6 +4,7 @@ class Pin < ActiveRecord::Base
 	belongs_to :brand
 
   has_many :galleries, dependent: :destroy
+  has_many :likes, dependent: :destroy
   accepts_nested_attributes_for :galleries
 	
 
@@ -11,7 +12,8 @@ class Pin < ActiveRecord::Base
 
 
 	Gasoline = [
-		['Gasolina', 'gasolina'],
+		['Regular', 'regular'],
 		['Diesel', 'diesel'],
+		['Otro', 'otro'],
 	]
 end

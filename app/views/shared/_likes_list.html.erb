@@ -1,0 +1,7 @@
+<li class="dropdown-header">Mis favoritos</li>
+<% @likes_list.each do |like| %>
+	<li>
+		<%= link_to like.pin.title, pin_path(like.pin) %>
+	</li>
+	
+<% end %>

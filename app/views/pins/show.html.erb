@@ -1,16 +1,32 @@
+<div class="row">
+	<div class="col-md-12">
+		
+		<div class="col-md-6 col-sm-12 slide">
+			<% if @pin.galleries %>
+				<% @pin.galleries.each do |p| %>
+					<div>
+						<%= image_tag(p.photo.url(:large)) %>
+					</div>
+				<% end %>
+			<% end %>
+		</div>
+		<div class="col-md-6 col-sm-12" style="background: grey;">
+			<h1><%= @pin.title %></h1>
+			<p class="price"><%= number_to_currency @pin.price %></p>
+			<p class="description"><%= @pin.desc %></p>
+			<div class="actions">
+				<a href="#" class="btn btn-default">ver numero telefonico</a>
+				<a href="#" class="btn btn-default">anadir a favoritos</a>
+			</div>
+		</div>
+	</div>
+</div>
 
+	<div id="post_<%= @pin.id %>_likes">
 
+		<%= render 'cars/likes', pin: @pin %>
+	</div>
 
-
-<p>
-  <strong>Title:</strong>
-  <%= @pin.title %>
-</p>
-
-<p>
-  <strong>Desc:</strong>
-  <%= @pin.desc %>
-</p>
 
 <p>By: <%= @pin.user.email %></p>
 
@@ -25,4 +41,16 @@
 	<%= link_to 'Edit', edit_pin_path(@pin) %> |
 <% end %>
 
-<%= link_to 'Back', root_path %>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+      $('.slide').slick({
+      	arrows: false,
+        dots: true,
+			  speed: 500,
+			  fade: true,
+			  cssEase: 'linear'
+      });
+    });
+</script>

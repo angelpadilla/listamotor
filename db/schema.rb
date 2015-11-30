@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118055916) do
+ActiveRecord::Schema.define(version: 20151130045840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20151118055916) do
 
   add_index "galleries", ["pin_id"], name: "index_galleries_on_pin_id", using: :btree
 
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "pin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["pin_id"], name: "index_likes_on_pin_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
   create_table "pins", force: :cascade do |t|
     t.string   "title"
     t.text     "desc"
@@ -54,6 +64,7 @@ ActiveRecord::Schema.define(version: 20151118055916) do
     t.integer  "price",                  limit: 8
     t.integer  "phone",                  limit: 8
     t.integer  "doors",                            default: 2
+    t.integer  "likes_count",                      default: 0
   end
 
   add_index "pins", ["brand_id"], name: "index_pins_on_brand_id", using: :btree
@@ -96,4 +107,6 @@ ActiveRecord::Schema.define(version: 20151118055916) do
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   add_foreign_key "galleries", "pins"
+  add_foreign_key "likes", "pins"
+  add_foreign_key "likes", "users"
 end

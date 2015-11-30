@@ -1,7 +1,23 @@
-
-<% @cars.each do |car| %>
-    <%= link_to pin_path(car) do %>
-	    <h2><%= car.title %></h2>
-    <% end %>
-  <br>
-<% end %>
+	<% @cars.each do |car| %>
+			<div class="media">
+				<a href="<%= pin_path(car) %>">
+			    <% if car.galleries.blank? %>
+			    	<div class="media-left">
+				    	<%= image_tag 'no-car.svg', size: "100", class: "media-object" %>
+						</div>
+				    <div class="media-body">
+							<h4><%= car.title %></h4>
+							<p><%= car.desc.truncate(120) %></p>
+						</div>
+					<% else %>
+							<div class="media-left">
+									<%= image_tag(car.galleries.first.photo.url(:thumb), class: "media-object") %>
+							</div>
+							<div class="media-body">
+								<h4 class="media-heading"><%= car.title %></h4>
+								<p><%= car.desc.truncate(120) %></p>
+							</div>
+					<% end %>
+				</a>
+			</div>
+	<% end %>

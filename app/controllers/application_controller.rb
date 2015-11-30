@@ -4,12 +4,15 @@ class ApplicationController < ActionController::Base
   include Tools
   protect_from_forgery with: :exception
 
-  before_action :authenticate_user!, :set_search
+  before_action :authenticate_user!, :set_search, :set_likes_list
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
   layout 'application'
 
   protected
+    def set_likes_list
+      @likes_list = current_user.likes.order(created_at: :desc).limit(6)
+    end
 
     def set_search
       @q = Pin.ransack(params[:q])

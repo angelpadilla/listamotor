@@ -12,13 +12,13 @@
         <% @pin.galleries.each do |p| %>
         <div class="row">
           <div class="col-xs-6 col-md-3 text-center">
-            <%= image_tag p.photo.url(:thumb), size: "100x100", class: "thumbnail margin-auto" %>
+            <%= image_tag p.photo.url(:thumb), class: "thumbnail margin-auto" %>
             <%= link_to 'eliminar', p, method: :delete, data: {confirm: "Estas seguro?"}, class: "" %>
           </div>
         </div>
         <% end %>
       <% end %>
-      <% 5.times do |i| %>
+      <% @image_count.times do |i| %>
         <div class="row">
           <div class="col-xs-6 col-md-12">
             <%= f.input "photo_#{i}", as: :file, label: false, input_html: {class: "thumbnail"} %>
@@ -32,7 +32,7 @@
 
   <%= f.input :title, input_html: {class: 'form-control'}, label: false, placeholder: 'Modelo', error: 'Obligatorio', required: true, maxlength: 60 %>
   <br>
-  <%= f.input :desc, label: false, placeholder: 'Descripcion', required: true, maxlength: 60 %>
+  <%= f.input :desc, label: false, placeholder: 'Descripcion', required: true, maxlength: 600 %>
   <%= f.input :km, input_html: {min: 0, max: 900000}, required: true, label: false, placeholder: 'Kilometraje' %>
   <%= f.input :year, collection: 1900..(Date.today.year + 1), required: true, label: false, prompt: 'Año' %>
 

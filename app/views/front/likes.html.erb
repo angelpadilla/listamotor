@@ -1,0 +1,7 @@
+<p>likes</p>
+<% @likes.each do |like| %>
+    <%= link_to pin_path(like) do %>
+	    <h2><%= like.pin.title %></h2>
+    <% end %>
+  <br>
+<% end %>

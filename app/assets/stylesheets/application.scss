@@ -21,7 +21,7 @@
 .navbar-brand {
 	padding: 0;
 	img {
-		width: 8rem;
+		width: 3rem;
 		height: 5rem;
 	}
 }
@@ -38,11 +38,21 @@
 	}
 }
 .img-container {
-	height: 30rem;
+	height: 20rem;
 	text-align: center;
+	position: relative;
 	img {
 		height: 100%;
 		width: 100%;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+.like {
+	img {
+		width: 3rem;
 	}
 }
 

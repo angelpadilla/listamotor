@@ -8,9 +8,8 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
-    # @pins = Pin.all.order(created_at: :desc)
+    @pins = Pin.all.order(created_at: :desc)
     # admin check super or editor
-    @pins = current_user.pins.order(created_at: :desc)
   end
 
   # GET /pins/1
@@ -24,11 +23,14 @@ class PinsController < ApplicationController
 
     @states = State.all
     @brands = Brand.all
+    @image_count = 5 
+
   end
 
   # GET /pins/1/edit
   def edit
     check_property(@pin)
+    @image_count = 5 - @pin.galleries.count
     @states = State.all
     @brands = Brand.all
   end
@@ -36,27 +38,23 @@ class PinsController < ApplicationController
   # POST /pins
   # POST /pins.json
   def create
-    if params[:pin][:photo_0]
-      puts "----------------------------------"
-      puts "true"
-      puts "----------------------------------"
-    end
+    
     @pin = current_user.pins.new(pin_params)
     respond_to do |format|
       if verify_recaptcha(model: @pin) && @pin.save
-        if params[:photos]
-          # params[:photos].each { |photo| @product.galleries.create(photo: photo) }
-          params[:photos].each do |photo|
-            @p = Gallery.new(photo: photo, pin_id: @pin.id)
-            @p.save
-          end
+        pin = params[:pin]
+        if pin[:photo_0] or pin[:photo_1] or pin[:photo_2] or pin[:photo_3] or pin[:photo_4]
+          pin_0 = Gallery.create(photo: pin[:photo_0], pin_id: @pin.id)
+          pin_1 = Gallery.create(photo: pin[:photo_1], pin_id: @pin.id)
+          pin_2 = Gallery.create(photo: pin[:photo_2], pin_id: @pin.id)
+          pin_3 = Gallery.create(photo: pin[:photo_3], pin_id: @pin.id)
+          pin_4 = Gallery.create(photo: pin[:photo_4], pin_id: @pin.id)
         end
-        format.html { redirect_to @pin, notice: 'Pin was successfully created.' }
+        format.html { redirect_to @pin, notice: 'Creado correctamente.' }
         format.json { render :show, status: :created, location: @pin }
       else
-        format.html { render :new}
+        format.html { redirect_to new_pin_path, notice: "Se produjo un error intenta nuevamente."}
         format.json { render json: @pin.errors, status: :unprocessable_entity }
-        flash[:notice] = 'Se produjo un error intenta nuevamente.'
       end
     end
 
@@ -66,30 +64,20 @@ class PinsController < ApplicationController
   # PATCH/PUT /pins/1.json
   def update
     check_property(@pin)
-    if params[:pin][:photo_0]
-      puts "----------------------------------"
-      puts "true"
-      puts "----------------------------------"
-    end
-
     respond_to do |format|
       if verify_recaptcha(model: @pin) && @pin.update(pin_params)
-        # if params[:photos]
-        #   # params[:photos].each { |photo| @product.galleries.create(photo: photo) }
-        #   params[:photos].each do |photo|
-        #     @p = Gallery.new(photo: photo, pin_id: @pin.id)
-        #     @p.save
-        #   end
-        # end
         pin = params[:pin]
-        if pin[:photo_0] or pin[:photo_1] or pin[:photo_2]
-          @p = Gallery.new(photo: params[:pin][:photo_0], pin_id: @pin.id)
-          @p.save
+        if pin[:photo_0] or pin[:photo_1] or pin[:photo_2] or pin[:photo_3] or pin[:photo_4]
+          pin_0 = Gallery.create(photo: pin[:photo_0], pin_id: @pin.id)
+          pin_1 = Gallery.create(photo: pin[:photo_1], pin_id: @pin.id)
+          pin_2 = Gallery.create(photo: pin[:photo_2], pin_id: @pin.id)
+          pin_3 = Gallery.create(photo: pin[:photo_3], pin_id: @pin.id)
+          pin_4 = Gallery.create(photo: pin[:photo_4], pin_id: @pin.id)
         end
-        format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }
+        format.html { redirect_to @pin, notice: 'Actualizado correctamente!' }
         format.json { render :show, status: :ok, location: @pin }
       else
-        format.html { render :edit }
+        format.html { redirect_to edit_pin_path(@pin), notice: "Se produjo un error intenta nuevamente." }
         format.json { render json: @pin.errors, status: :unprocessable_entity }
       end
     end
@@ -103,7 +91,7 @@ class PinsController < ApplicationController
     end
     @pin.destroy
     respond_to do |format|
-      format.html { redirect_to pins_url, notice: 'Pin was successfully destroyed.' }
+      format.html { redirect_to pins_url, notice: 'Destruido correctamente' }
       format.json { head :no_content }
     end
   end

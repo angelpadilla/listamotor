@@ -1,0 +1,10 @@
+		<% if user_signed_in? && current_user.likes?(pin) %>
+			<%= link_to destroy_like_path(pin), method: :delete, remote: true, class: "like" do %>
+				<%= image_tag 'heart2.svg' %>
+			<% end %>
+		<% else %>
+			<%= link_to increase_like_path(pin), method: :post, remote: true, class: "like" do %>
+				<%= image_tag 'heart.svg' %>
+			<% end %>
+		<% end %>
+

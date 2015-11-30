@@ -1,0 +1,2 @@
+module Cars::LikesHelper
+end

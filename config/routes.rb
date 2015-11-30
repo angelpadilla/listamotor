@@ -9,7 +9,16 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :pins
+  post 'pins/:post_id/like', to: 'cars/likes#create', as: :increase_like
+  delete 'pins/:post_id/like', to: 'cars/likes#destroy', as: :destroy_like
+
+  get 'likes', to: 'front#likes', as: :likes
+
+
+
   root 'home#front'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

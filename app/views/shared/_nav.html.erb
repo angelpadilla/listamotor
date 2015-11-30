@@ -7,7 +7,7 @@
 		</div>
 		<%= search_form_for(@q, url: index_path, html:{class: "navbar-form navbar-left", role: "search"}) do |f| %>
 			<div class="form-group">
-				<%= f.search_field :title_cont, placeholder: 'modelo, palabra clave...', class: "form-control	" %>
+				<%= f.search_field :title_or_brand_title_cont, placeholder: 'modelo, palabra clave...', class: "form-control	" %>
 				<%= f.collection_select :state_id_eq, @states, :id, :title, {prompt: 'Todos los estados'}, class: "form-control" %>
 				<%= f.collection_select :brand_id_eq, @brands, :id, :title, {prompt: 'Todos las marcas'}, class: "form-control" %>
 				<%= f.select :year_eq, 1886..(Date.today.year + 1), {prompt: 'Todos los años'}, class: "form-control" %>
@@ -42,10 +42,11 @@
 						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 					</a>
 					<ul class="dropdown-menu">
-            <li>
-	            <%= link_to 'Mis autos', my_cars_path %>
-            </li>
+            <%= render 'shared/likes_list' %>
             <li role="separator" class="divider"></li>
+            <li>
+            	<%= link_to 'Ver todos', likes_path %>
+            </li>
             
           </ul>
 				</li>
