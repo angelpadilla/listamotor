@@ -31,8 +31,8 @@ class User < ActiveRecord::Base
 	after_create :send_notification
 
   def send_notification
-    Admin.new_user(self).deliver
-    Admin.welcome(self).deliver
+    AdminMailer.new_user(self).deliver
+    AdminMailer.welcome(self).deliver
   end
 
 end

@@ -1,7 +1,16 @@
-<li class="dropdown-header">Mis favoritos</li>
-<% @likes_list.each do |like| %>
+
+<% if @likes_list.blank? %>
+	<li class="dropdown-header">No tienes favoritos todavía</li>
+<% else %>
+	<li class="dropdown-header">Mis favoritos</li>
+	<% @likes_list.each do |like| %>
+		<li>
+			<%= link_to like.pin.title, pin_path(like.pin) %>
+		</li>
+		
+	<% end %>
+	<li role="separator" class="divider"></li>
 	<li>
-		<%= link_to like.pin.title, pin_path(like.pin) %>
+		<%= link_to 'Ver todos', likes_path %>
 	</li>
-	
 <% end %>

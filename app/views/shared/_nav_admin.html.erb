@@ -42,10 +42,7 @@
 						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 					</a>
 					<ul class="dropdown-menu">
-            <li>
-	            <%= link_to 'favoritos', likes_path %>
-            </li>
-            <li role="separator" class="divider"></li>
+            <%= render 'shared/likes_list' %>
             
           </ul>
 				</li>

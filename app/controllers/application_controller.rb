@@ -11,7 +11,9 @@ class ApplicationController < ActionController::Base
 
   protected
     def set_likes_list
-      @likes_list = current_user.likes.order(created_at: :desc).limit(6)
+      if user_signed_in?
+        @likes_list = current_user.likes.order(created_at: :desc).limit(6)
+      end
     end
 
     def set_search
