@@ -2,9 +2,10 @@
 		<% @cars.each do |car| %>
 			<div class="col-sm-6 col-md-3">
 				<div class="thumbnail">
+					
 					<div class="img-container">
 						<% unless car.galleries.blank? %>
-							<a href="<%= pin_path(car) %>">
+							<a href="<%= pin_path(car) %>" class="link-white" >
 								<%= image_tag car.galleries.first.photo.url(:large) %>
 							</a>
 						<% else %>
@@ -12,19 +13,34 @@
 								<%= image_tag 'no-car.svg' %>
 							</a>
 						<% end %>
+						<span class="state"><%= car.state.title %></span>
+
 					</div>
-					<div class="caption">
+					<div class="title-caption">
 				    <%= link_to pin_path(car) do %>
-					    <h3><%= car.title.truncate(20) %></h3>
+					    <h3><%= car.title.truncate(22) %></h3>
 				    <% end %>
-						<h4><%= number_to_currency(car.price) %></h4>
-						<span class="label label-default"><%= car.brand.title %></span>
-						<span class="label label-default"><%= car.year %></span>
-						<!-- <span class="label label-default"><%= number_with_delimiter car.km %> Km</span> -->
-						<span class="label label-default"><%= car.state.title %></span>
 					</div>
+					<div class="price-caption">
+						<h4 class="price"><%= number_to_currency(car.price) %></h4>
+						<span class="">| <%= car.brand.title %></span> 
+						<span class="">| <%= car.year %></span>
+					</div>
+					<div class="social-caption">
+						<%= render 'social_buttons', url: pin_url(car) %>
+						<span id="post_<%= car.id %>_likes">
+							<%= render 'cars/likes', pin: car %>
+						</span>
+					</div>
+						<!-- <span class="label label-default"><%= number_with_delimiter car.km %> Km</span> -->
 				</div>
 			</div>
 		<% end %>
-		
+	</div>
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<nav>
+				<%= will_paginate @cars %>
+			</nav>
+		</div>	
 	</div>

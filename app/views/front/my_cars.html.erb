@@ -1,3 +1,4 @@
+<div class="mycars">
 	<% @cars.each do |car| %>
 			<div class="media">
 				<a href="<%= pin_path(car) %>">
@@ -21,3 +22,11 @@
 				</a>
 			</div>
 	<% end %>
+</div>
+<div class="row">
+		<div class="col-md-12 text-center">
+			<nav>
+				<%= will_paginate @cars %>
+			</nav>
+		</div>	
+</div>

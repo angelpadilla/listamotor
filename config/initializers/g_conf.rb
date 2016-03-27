@@ -12,3 +12,5 @@ ActionMailer::Base.default charset: "utf-8"
 
 EMAIL = 'angelpadillam@gmail.com'
 SITE = 'autos.com'
+
+Pins_per_page = 2

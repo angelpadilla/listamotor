@@ -1,5 +1,5 @@
 /* Make clicks pass-through */
-$pink: rgb(202, 69, 89);
+$pink: #17579E;
 
 #nprogress {
   pointer-events: none;
@@ -15,7 +15,7 @@ $pink: rgb(202, 69, 89);
   left: 0;
 
   width: 100%;
-  height: 1px;
+  height: 2px;
 }
 
 /* Fancy blur effect */

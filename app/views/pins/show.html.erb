@@ -22,10 +22,14 @@
 	</div>
 </div>
 
-	<div id="post_<%= @pin.id %>_likes">
-
+<div class="row">
+	<div class="col-md-6" id="post_<%= @pin.id %>_likes">
 		<%= render 'cars/likes', pin: @pin %>
 	</div>
+	<div class="col-md-6">
+		<%= render 'shared/social_buttons', url: pin_url(@pin) %>
+	</div>
+</div>
 
 
 <p>By: <%= @pin.user.email %></p>

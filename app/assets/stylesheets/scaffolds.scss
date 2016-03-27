@@ -32,4 +32,11 @@
     list-style: square;
   }
 }
-
+a {
+  &:hover{
+    text-decoration: none;
+  }
+  p {
+    color: black;
+  }
+}

@@ -14,9 +14,112 @@
  *= require_self
  */
 
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
+// @import "bootstrap/variables";
+$dark: #1B1D28;
+$green: #3DCDC1;
+$blue: #17579E;
+$gray: #ACADB2;
+
+// bootstrap modifications
+
+.thumbnail {
+	background: $dark;
+	border: none; 
+	padding: 0;
+	.img-container {
+		text-align: center;
+		position: relative;
+		// height responsive
+		height: 0;
+		padding-bottom: 60%;
+		overflow: hidden;
+		top: -1px;
+
+		.state {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: $blue;
+			padding: 0.5rem;
+			color: white;
+			text-transform: uppercase;
+			font-size: 1rem;
+			border-top-right-radius: 4px;
+		}
+		img {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+
+		}
+	}
+	.title-caption {
+		border-bottom: 1px solid #3D3F48;
+		padding: 0 1.5rem 1rem;
+		h3 {font-size: 2rem;}
+	}
+	.price-caption {
+		padding: 1.5rem;
+		.price {
+			font-size: 1.7rem;
+			color: $green;
+			font-weight: 400;
+		}
+		h4, span {
+			display: inline-block;
+		}
+		span {
+			color: $gray;
+			font-weight: 300;
+			text-transform: uppercase;
+			font-size: 1.2rem;
+		}
+	}
+	.social-caption {
+		text-align: center;
+		padding: 1.5rem;
+		a, img {display: inline-block;}
+		a {
+			margin: 0 1rem;
+			img {
+				width: 2rem;
+			}
+		}
+	}
+	a {
+		color: white;
+	}
+	
+}
+// 
+
+a:hover {
+	text-decoration: none;
+}
+.mycars {
+	.media:hover {background: rgba(30,30,30,0.3); }
+}
+
+
+a {
+	color: $blue;
+	.share-img {
+		width: 2rem;
+		opacity: 0.5;
+	}
+	&:hover .share-img {
+		opacity: 1;
+	}
+}
+// .link-white {color: white;}
+
+
 
 .navbar-brand {
 	padding: 0;
@@ -38,7 +141,7 @@
 	}
 }
 .img-container {
-	height: 20rem;
+	height: 18rem;
 	text-align: center;
 	position: relative;
 	img {
@@ -56,6 +159,35 @@
 	}
 }
 
+.pagination {
+	position: relative;
+	top: 12rem;
+	a, span {
+		padding: 0.2rem 0.3rem;
+	}
+	a {
+		text-decoration: none;
+    color: black;
+    &:hover, &:focus {
+    	text-decoration: underline;
+    }
+	}
+	.disabled {
+		color: #aaaaaa;
+	}
+	.current {
+		font-style: normal;
+    font-weight: bold;
+    background-color: #bebebe;
+    display: inline-block;
+    width: 1.4em;
+    // height: 1.4em;
+    // line-height: 1.5;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    border-radius: 1em;
+	}
+}
 
 
 

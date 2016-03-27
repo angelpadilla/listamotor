@@ -1,5 +1,9 @@
 <% if params[:q] and @cars.empty?%>
-		<p>No hubo resultados</p>
+	<div class="row">
+		<div class="col-md-12 text-center">
+			<p>No hubo resultados :(</p>
+		</div>
+	</div>
 <% end %>
 
 <%= render 'car' %>
