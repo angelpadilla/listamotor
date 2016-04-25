@@ -17,9 +17,8 @@
 				<td><%= car.state.title %></td>
 				<td><%= car.user.email %></td>
 				<td>
-					<%= link_to 'ver',  %>
-					<%= link_to 'editar' %>
-					<%= link_to 'destruir' %>
+					<%= link_to 'ver', car  %>
+					<%= link_to 'destruir', car %>
 				</td>
 			</tr>
 		<% end %>

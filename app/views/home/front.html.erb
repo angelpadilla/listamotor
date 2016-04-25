@@ -8,7 +8,7 @@
 		<%= search_form_for(@q, url: index_path, html:{class: "form-inline", role: "search"}) do |f| %>
 			<div class="home-search">
 					<div class="input-group">
-						<%= f.search_field :title_or_brand_title_cont, placeholder: 'busqueda ...', class: "form-control" %>
+						<%= f.search_field :title_or_brand_title_or_state_title_or_year_cont, placeholder: 'busqueda ...', class: "form-control", id: "input-search-home" %>
 			      <span class="input-group-btn">
 							<%= f.submit 'buscar', class: "btn btn-default" %>
 			      </span>

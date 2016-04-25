@@ -16,4 +16,9 @@ class Pin < ActiveRecord::Base
 		['Diesel', 'diesel'],
 		['Otro', 'otro'],
 	]
+	private
+		ransacker :year do
+	    Arel.sql("to_char(\"#{table_name}\".\"year\", '99999')")
+	  end
+	 
 end
