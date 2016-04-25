@@ -22,6 +22,10 @@ $green: #3DCDC1;
 $blue: #17579E;
 $gray: #ACADB2;
 
+body {
+	background-color: #F4F4F4;
+}
+
 // bootstrap modifications
 
 .thumbnail {
@@ -120,14 +124,15 @@ a {
 // .link-white {color: white;}
 
 
-
-.navbar-brand {
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
 	padding: 0;
+	margin-left: 0;
 	img {
 		width: 3rem;
 		height: 5rem;
 	}
 }
+
 
 .text-center {
 	text-align: center;
@@ -135,11 +140,7 @@ a {
 .margin-auto {
 	margin: 0 auto;
 }
-.image-header {
-	img {
-		height: 30rem;
-	}
-}
+
 .img-container {
 	height: 18rem;
 	text-align: center;
@@ -188,6 +189,9 @@ a {
     border-radius: 1em;
 	}
 }
-
+.container {
+	padding-right: 1rem;
+	padding-left: 1rem;
+}
 
 

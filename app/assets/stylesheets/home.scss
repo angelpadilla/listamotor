@@ -1,3 +1,44 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+input {
+
+}
+
+.image-header {
+	margin-top: 10rem;
+	img {
+		height: 15rem;
+	}
+}
+.home-search {
+	#q_title_or_brand_title_cont {
+		width: 60rem;
+		border-color: #999999;
+		// border-width: 2px;
+		color: #999999;
+
+	}
+	input[type="submit"] {
+		background: #C99F71 url(icons/search.svg) no-repeat;
+		background-position: center;
+		background-size: 2rem;
+		width: 5rem;
+		color: transparent;
+		border-color: #C99F71;
+	}
+	.filter {
+		img {
+			width: 2.5rem;
+			margin-left: 1rem;
+		}
+	}
+}
+
+
+
+
+
+
+
