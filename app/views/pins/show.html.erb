@@ -1,51 +1,114 @@
-<div class="row">
-	<div class="col-md-12">
-		
-		<div class="col-md-6 col-sm-12 slide">
-			<% if @pin.galleries %>
-				<% @pin.galleries.each do |p| %>
-					<div>
-						<%= image_tag(p.photo.url(:large)) %>
+<div class="container" style="margin-top: 3rem">
+	
+		<div class="row">
+			<div class="col-sm-12" class="s-head">
+				<div class="col-sm-12 col-md-8">
+					<div class="col-sm-12 s-title">
+						<h3><%= @pin.brand.title %>	- <%= @pin.title %></h3>
 					</div>
-				<% end %>
-			<% end %>
-		</div>
-		<div class="col-md-6 col-sm-12" style="background: grey;">
-			<h1><%= @pin.title %></h1>
-			<p class="price"><%= number_to_currency @pin.price %></p>
-			<p class="description"><%= @pin.desc %></p>
-			<div class="actions">
-				<a href="#" class="btn btn-default">ver numero telefonico</a>
-				<a href="#" class="btn btn-default">anadir a favoritos</a>
+					<div class="col-sm-12 slide white-n-b" class="s-pictures">
+							<% unless @pin.galleries.empty? %>
+								<% @pin.galleries.each do |p| %>
+									<div>
+										<%= image_tag(p.photo.url(:large)) %>
+									</div>
+								<% end %>
+							<% else %>
+								<%= image_tag('no-car.svg') %>
+							<% end %>
+					</div>
+					<div class="col-sm-12 white-n-b s-desc" >
+						<div class="col-sm-12 s-user-name">
+							<h4><%= @pin.user.name %></h4>
+							<p>- publicado el <%= local_time @pin.created_at, '%d/%m/%Y' %></p>
+						</div>
+						<div class="col-sm-12 s-car-desc">
+							<p><%= @pin.desc %></p>
+						</div>
+					</div>
+					<div class="col-sm-12 white-n-b s-disqus">
+						<%= render 'disqus' %>
+					</div>
+
+				</div>
+				<div class="col-sm-12 col-md-4 s-info">
+					<div class="col-sm-12 s-price">
+						<p><%= number_to_currency @pin.price %></p>
+					</div>
+					<div class="col-sm-12" class="s-buttons">
+						<% if user_signed_in? %>
+							<div class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#contact">Contacto</div>
+							<span id="post_<%= @pin.id %>_likes">
+								<%= render 'cars/likes', pin: @pin %>
+							</span>	
+
+						<% else %>
+							<div class="btn btn-primary btn-lg btn-block" id="not-s1" title="Tienes que iniciar sesión para ver los datos de contacto del vendedor">Contacto</div>
+							<div class="btn btn-default btn-block" id="not-s2" title="Tienes que iniciar sesión para guardar esta publicación en tus favoritos">Añadir a favoritos</div>
+						<% end %>
+						<div class="btn-group btn-group-justified" role="group">
+							<%= render 'shared/social_buttons', url: show_car_url(@pin) %>
+						</div>
+					</div>
+
+					<div class="col-sm-12 s-details">
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Tipo combustible</div>
+							<div class="col-sm-6 value"><%= @pin.gasoline.capitalize %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Kilometraje</div>
+							<div class="col-sm-6 value"><%= number_with_delimiter @pin.km %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Marca</div>
+							<div class="col-sm-6 value"><%= @pin.brand.title %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Estado</div>
+							<div class="col-sm-6 value"><%= @pin.state.title %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Localidad</div>
+							<div class="col-sm-6 value"><%= @pin.city.capitalize %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Color</div>
+							<div class="col-sm-6 value"><%= @pin.color.capitalize %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Transmision</div>
+							<div class="col-sm-6 value"><%= @pin.transmission.capitalize %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Aire acondicionado</div>
+							<div class="col-sm-6 value"><%= @pin.air ? 'Si' : 'No' %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Tenencias pagadas</div>
+							<div class="col-sm-6 value"><%= @pin.tenencias_pagadas ? 'Si' : 'No' %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Año</div>
+							<div class="col-sm-6 value"><%= @pin.year %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Puertas</div>
+							<div class="col-sm-6 value"><%= @pin.doors %></div>
+						</div>
+						<div class="col-sm-12 line">
+							<div class="col-sm-6 key">Verificacion ambiental</div>
+							<div class="col-sm-6 value"><%= @pin.ambiental_verification ? 'Si' : 'No' %></div>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
+
 </div>
-
-<div class="row">
-	<div class="col-md-6" id="post_<%= @pin.id %>_likes">
-		<%= render 'cars/likes', pin: @pin %>
-	</div>
-	<div class="col-md-6">
-		<%= render 'shared/social_buttons', url: pin_url(@pin) %>
-	</div>
-</div>
-
-
-<p>By: <%= @pin.user.email %></p>
 
 <% if user_signed_in? %>
-	<p>
-		
-		<%= number_to_phone @pin.phone %>
-	</p>
+	<%= render 'contact_info' %>
 <% end %>
-
-<% if its_mine? @pin %>
-	<%= link_to 'Edit', edit_pin_path(@pin) %> |
-<% end %>
-
-
 
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -56,5 +119,14 @@
 			  fade: true,
 			  cssEase: 'linear'
       });
+
+      $('#not-s1').click(function() {
+      	alert('Tienes que iniciar sesión para ver los datos de contacto del vendedor');
+      })
+      $('#not-s2').click(function() {
+      	alert('Tienes que iniciar sesión para guardar esta publicación en tus favoritos');
+      })
+
+
     });
 </script>

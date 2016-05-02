@@ -1,15 +1,62 @@
-<p>likes</p>
-<% @likes.each do |like| %>
-    <%= link_to pin_path(like.pin) do %>
-	    <h2><%= like.pin.title %></h2>
-    <% end %>
-  <br>
-<% end %>
+<div class="container" style="margin-top: 3rem;">
 
-<div class="row">
-		<div class="col-md-12 text-center">
-			<nav>
-				<%= will_paginate @likes %>
-			</nav>
-		</div>	
+	<div class="col-sm-12 col-md-3">
+		<div class="col-sm-12 white-n-b panel-user">
+			<div class="col-sm-12">
+				<a href="<%= my_cars_path %>">Mis autos</a>
+			</div>
+			<div class="col-sm-12">
+				<a href="<%= likes_path %>" class="active">Mis favoritos</a>
+			</div>
+			<div class="col-sm-12">
+				<a href="<%= store_path(current_user.id) %>">Mi perfil</a>
+			</div>
+			<div class="col-sm-12">
+				<a href="<%= edit_user_registration_path %>">Editar perfil</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-12 col-md-9 white-n-b">
+		
+		<div class="mycars">
+			<% @likes.each do |like| %>
+					<div class="media">
+					    <% if like.pin.galleries.blank? %>
+					    	<div class="media-left">
+						    	<%= image_tag 'no-car.svg', size: "100", class: "media-object" %>
+								</div>
+						    <div class="media-body">
+									<h4 class="media-heading"><%= like.pin.brand.title %> - <%= like.pin.title %></h4>
+									<p><%= number_to_currency like.pin.price %></p>
+								</div>
+								<div class="media-right">
+										<%= link_to 'ver', show_car_path(like.pin), class: "btn btn-default btn-block" %>
+								</div>
+							<% else %>
+									<div class="media-left">
+											<%= image_tag(like.pin.galleries.first.photo.url(:thumb), class: "media-object") %>
+									</div>
+									<div class="media-body">
+										<h4 class="media-heading"><%= like.pin.brand.title %> - <%= like.pin.title %></h4>
+										<p><%= number_to_currency like.pin.price %></p>
+									</div>
+									<div class="media-right">
+										<%= link_to 'ver', show_car_path(like.pin), class: "btn btn-default btn-block" %>
+									</div>
+							<% end %>
+					</div>
+					<hr>
+			<% end %>
+		</div>
+		<div class="row">
+				<div class="col-md-12 text-center">
+					<nav>
+						<%= will_paginate @likes %>
+					</nav>
+				</div>	
+		</div>
+	</div>
+	
 </div>
+

@@ -2,22 +2,31 @@ Rails.application.routes.draw do
   resources :galleries
   resources :states
   resources :brands
-  get '0:id', to: 'front#show', as: :store
+  devise_for :users
+  resources :pins
+
+
+
+  get 'store/:id', to: 'front#show', as: :store
   get 'my-cars', to: 'front#my_cars', as: :my_cars
   get 'index', to: 'front#index', as: :index
   get 'admin', to: 'admin#home', as: :admin
 
-  devise_for :users
-  resources :pins
   post 'pins/:post_id/like', to: 'cars/likes#create', as: :increase_like
   delete 'pins/:post_id/like', to: 'cars/likes#destroy', as: :destroy_like
 
   get 'likes', to: 'front#likes', as: :likes
 
 
+  get 'index/cheap', to: 'front#cheap', as: :cheap_search
+  get 'index/no-cheap', to: 'front#no_cheap', as: :no_cheap_search
+  get 'index/classics', to: 'front#classics', as: :classics_search
+  get 'index/moderns', to: 'front#modern', as: :moderns_search
+
 
   root 'home#front'
 
+  get ':id', to: 'pins#show', as: :show_car
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

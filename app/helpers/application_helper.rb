@@ -8,7 +8,14 @@ module ApplicationHelper
 	end
 
 	def super?
-		if current_user.is?(:super) or current_user.is?(:editor)
+		if current_user.is?(:super)
+			true
+		end
+	rescue NoMethodError
+		false
+	end
+	def editor?
+		if current_user.is?(:editor)
 			true
 		end
 	rescue NoMethodError

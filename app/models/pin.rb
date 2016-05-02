@@ -10,15 +10,23 @@ class Pin < ActiveRecord::Base
 
   scope :cities, -> {select(:city).distinct} 
 
+  scope :cheap, -> {order(price: :asc)} 
+  scope :no_cheap, -> {order(price: :desc)} 
+  scope :classics, -> {where(year: 1880..(Time.now.year - 30)).order(year: :asc)} 
+  scope :modern, -> {where(year: (Time.now.year - 5)..(Time.now.year)).order(year: :desc)} 
+
 
 	Gasoline = [
 		['Regular', 'regular'],
 		['Diesel', 'diesel'],
 		['Otro', 'otro'],
 	]
+
+
+
 	private
-		ransacker :year do
-	    Arel.sql("to_char(\"#{table_name}\".\"year\", '99999')")
-	  end
+		# ransacker :year do
+	 #    Arel.sql("to_char(\"#{table_name}\".\"year\", '99999')")
+	 #  end
 	 
 end

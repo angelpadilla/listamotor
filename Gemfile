@@ -10,7 +10,6 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'simple_form'
-gem 'devise'
 gem 'ransack'
 
 group :test do
@@ -25,7 +24,9 @@ group :development, :test do
   gem 'spring'
 end
 
-gem 'pg'
+#### gem 'pg'
+gem 'sqlite3'
+
 group :production do 
 	gem 'rails_12factor'
 end
@@ -37,5 +38,6 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'local_time'
 gem 'will_paginate', '~> 3.0'
 gem "paperclip", "~> 4.3"
+gem 'devise'
 
 

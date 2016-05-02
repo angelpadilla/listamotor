@@ -29,8 +29,9 @@
   </div>
 
 
+  <%= f.input :brand_id, collection: @brands, required: true, label: false, prompt: 'Marca' %>
 
-  <%= f.input :title, input_html: {class: 'form-control'}, label: false, placeholder: 'Modelo', error: 'Obligatorio', required: true, maxlength: 60 %>
+  <%= f.input :title, input_html: {class: 'form-control'}, label: false, placeholder: 'Nombre modelo', error: 'Obligatorio', required: true, maxlength: 60 %>
   <br>
   <%= f.input :desc, label: false, placeholder: 'Descripcion', required: true, maxlength: 600 %>
   <%= f.input :km, input_html: {min: 0, max: 900000}, required: true, label: false, placeholder: 'Kilometraje' %>
@@ -48,7 +49,6 @@
   <%= f.input :color, required: true, label: false, placeholder: 'Color' %>
   <%= f.input :gasoline, required: true, label: false, prompt: 'Tipo de gasolina', collection: Pin::Gasoline %>
   <%= f.input :transmission, required: true, label: false, placeholder: 'Tipo de transmisión' %>
-  <%= f.input :brand_id, collection: @brands, required: true, label: false, prompt: 'Marca' %>
 
   <%= f.input :air, label: "¿Aire acondicionado?" %>
   <%= f.input :ambiental_verification, label: "¿Verificación ambiental?" %>

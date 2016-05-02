@@ -17,9 +17,17 @@
 //= require local_time
 //= require_tree .
 
-$(document).on('page:fetch',   function() { NProgress.start(); });
+$(document).on('page:fetch',   function() { 
+	NProgress.start(); 
+
+});
 $(document).on('page:change',  function() {
 	NProgress.done(); 
+	
+	$('.notice_container').delay(1300).fadeOut("slow", function() {
+		$(this).remove();
+	});
+
 });
 $(document).on('page:restore', function() { 
 	NProgress.remove(); 

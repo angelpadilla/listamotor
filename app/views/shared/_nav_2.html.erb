@@ -1,10 +1,8 @@
-<nav class="navbar navbar-default">
+<nav class="navbar ">
 	<div class="container">
-		<div class="navbar-brand">
-			<a href="/index" class="navbar-brand">
-				<%= image_tag('car.svg') %>
-			</a>
-		</div>
+		<ul class="nav navbar-nav">
+			<li><%= link_to 'Ir a pagina completa', index_path %></li>
+		</ul>
 		<% if user_signed_in? %>
 			<ul class="nav navbar-nav navbar-right">
 				<li>

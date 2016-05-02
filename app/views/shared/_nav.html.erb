@@ -1,27 +1,20 @@
-<nav class="navbar navbar-default">
+<nav class="navbar principal">
 	<div class="container">
 		<div class="navbar-brand">
 			<a href="/index" class="navbar-brand">
-				<%= image_tag('car.svg') %>
+				<%= image_tag('logo-nav.svg') %>
 			</a>
 		</div>
-		<%= search_form_for(@q, url: index_path, html:{class: "navbar-form navbar-left", role: "search"}) do |f| %>
-			<div class="form-group">
-				<%= f.search_field :title_or_brand_title_or_state_title_or_year_cont, placeholder: 'Busqueda ...', class: "form-control	" %>
-			</div>
-			<%= f.submit 'Buscar', class: "btn btn-default" %>
-		<% end %>
-
 
 
 
 		<% if user_signed_in? %>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right" id="list">
 				<li>
-					<%= link_to 'Vender', new_pin_path %>
+					<%= link_to 'Vender', new_pin_path, id: "link" %>
 				</li>
 				<li>
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Mi cuenta">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Mi cuenta" id="link">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					</a>
 					<ul class="dropdown-menu">
@@ -29,7 +22,10 @@
             <li>
 	            <%= link_to 'Mis autos', my_cars_path %>
             </li>
-						<li><%= link_to 'Mi perfil', edit_user_registration_path %></li>
+						<li>
+							<%= link_to 'Mis favoritos', likes_path %>
+						</li>
+						<li><%= link_to 'Mi perfil', store_path(current_user.id) %></li>
 						
             <li role="separator" class="divider"></li>
             <li>
@@ -37,33 +33,38 @@
             </li>
           </ul>
 				</li>
-				<li>
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Favoritos">
-						<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-					</a>
-					<ul class="dropdown-menu">
-            <%= render 'shared/likes_list' %>
-            
-            
-          </ul>
-				</li>
-				<% if super? %>
-					<li>
-						<a href="/admin" title="Admin">
-							<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						</a>
-					</li>
+				<%= search_form_for(@q, url: index_path, html:{class: "navbar-form navbar-left", role: "search"}) do |f| %>
+					<div class="input-group form-group">
+						<%= f.search_field :title_or_brand_title_or_state_title_cont, placeholder: '', class: "form-control	" %>
+						<span class="input-group-btn">
+							<%= f.submit 'buscar', class: "btn btn-default" %>
+			      </span>
+					</div>
 				<% end %>
+				<li><a href="" id="link" data-toggle="modal" data-target="#filter_modal" title="Busqueda avanzada"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+				</li>
+				
 			</ul>
 		<% else %>
-			<ul class="nav navbar-nav navbar-right">
+			<ul class="nav navbar-nav navbar-right not-signed">
 				<li>
 					<%= link_to 'Registro', new_user_registration_path %>
 				</li>
 				<li>
 					<%= link_to 'Entrar', new_user_session_path %>
 				</li>
+				<%= search_form_for(@q, url: index_path, html:{class: "navbar-form navbar-left", role: "search"}) do |f| %>
+					<div class="input-group form-group">
+						<%= f.search_field :title_or_brand_title_or_state_title_cont, placeholder: '', class: "form-control	" %>
+						<span class="input-group-btn">
+							<%= f.submit 'buscar', class: "btn btn-default" %>
+			      </span>
+					</div>
+				<% end %>
+				<li><a href="" id="link" data-toggle="modal" data-target="#filter_modal" title="Busqueda avanzada"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>
+				</li>
 			</ul>
 		<% end %>
 	</div>
 </nav>
+<%= render 'shared/search_modal' %>

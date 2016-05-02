@@ -1,5 +1,6 @@
 
 
+
 	<div class="row text-center">
 
 		<div class="image-header">
@@ -7,18 +8,21 @@
 		</div>
 		<%= search_form_for(@q, url: index_path, html:{class: "form-inline", role: "search"}) do |f| %>
 			<div class="home-search">
-					<div class="input-group">
-						<%= f.search_field :title_or_brand_title_or_state_title_or_year_cont, placeholder: 'busqueda ...', class: "form-control", id: "input-search-home" %>
+					<div class="input-group search-field">
+						<%= f.search_field :title_or_brand_title_or_state_title_cont, placeholder: 'busqueda ...', class: "form-control", id: "input-search-home" %>
 			      <span class="input-group-btn">
 							<%= f.submit 'buscar', class: "btn btn-default" %>
 			      </span>
 					</div>
-					<%= link_to '#', class: "filter" do %>
+
+					<a href="#" data-toggle="modal" data-target="#filter_modal" class="filter" title="Busqueda avanzada">
 			      <%= image_tag 'icons/filter.svg' %>
-					<% end %>
+					</a>
 			</div>
 		<% end %>
 	</div>
+
+	<%= render 'shared/search_modal' %>
 
 
 

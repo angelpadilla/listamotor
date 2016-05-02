@@ -1,46 +1,60 @@
-<div class="row">
-		<% @cars.each do |car| %>
-			<div class="col-sm-6 col-md-3">
-				<div class="thumbnail">
+	
+	<% @cars.each do |car| %>
+			<div class="col-md-6 col-sm-12 card">
+				<div class="col-sm-12 card2">
+						<div class="col-sm-6 image">
+								<div class="img-container">
+									<% unless car.galleries.blank? %>
+										<a href="<%= show_car_path(car) %>" class="link-white" >
+											<%= image_tag car.galleries.first.photo.url(:large) %>
+										</a>
+									<% else %>
+										<a href="<%= show_car_path(car) %>">
+											<%= image_tag 'no-car.svg' %>
+										</a>
+									<% end %>
+								</div>
+							
+						</div>
+						<div class="col-sm-6 info">
+							<div class="col-sm-12 title">
+								<p><%= car.brand.title %></p>
+								<a href="<%= show_car_path(car) %>" class="">
+									<h3><%= car.title.capitalize.truncate(22) %></h3>
+								</a>		
+							</div>
+							<div class="col-md-12 bottom">
+								<div class="col-sm-12 state">
+									<%= car.state.title %>
+								</div>
+								<div class="col-sm-12 specs">
+									<div class="col-sm-4">
+										<%= image_tag 'icons/trans.svg' %>
+										<%= car.transmission %>
+									</div>
+									<div class="col-sm-4">
+										<%= image_tag 'icons/fuel.svg' %>
+										<%= car.gasoline %>
+									</div>
+									<div class="col-sm-4">
+										<%= image_tag 'icons/med.svg' %>
+										<%= number_with_delimiter car.km %>
+									</div>
+								</div>
+								<div class="col-sm-12 price">
+									<div class="col-sm-4 year"><%= car.year %></div>
+									<div class="col-sm-8 col-xm-8 price2"><%= number_to_currency car.price %></div>
+								</div>
+							</div>
+						</div>
 					
-					<div class="img-container">
-						<% unless car.galleries.blank? %>
-							<a href="<%= pin_path(car) %>" class="link-white" >
-								<%= image_tag car.galleries.first.photo.url(:large) %>
-							</a>
-						<% else %>
-							<a href="<%= pin_path(car) %>">
-								<%= image_tag 'no-car.svg' %>
-							</a>
-						<% end %>
-						<span class="state"><%= car.state.title %></span>
-
-					</div>
-					<div class="title-caption">
-				    <%= link_to pin_path(car) do %>
-					    <h3><%= car.title.truncate(22) %></h3>
-				    <% end %>
-					</div>
-					<div class="price-caption">
-						<h4 class="price"><%= number_to_currency(car.price) %></h4>
-						<span class="">| <%= car.brand.title %></span> 
-						<span class="">| <%= car.year %></span>
-					</div>
-					<div class="social-caption">
-						<%= render 'social_buttons', url: pin_url(car) %>
-						<span id="post_<%= car.id %>_likes">
-							<%= render 'cars/likes', pin: car %>
-						</span>
-					</div>
-						<!-- <span class="label label-default"><%= number_with_delimiter car.km %> Km</span> -->
 				</div>
+
+
+				
 			</div>
 		<% end %>
-	</div>
-	<div class="row">
-		<div class="col-md-12 text-center">
-			<nav>
-				<%= will_paginate @cars %>
-			</nav>
-		</div>	
-	</div>
+
+
+
+

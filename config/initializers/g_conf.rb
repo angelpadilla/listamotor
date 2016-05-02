@@ -10,7 +10,10 @@ ActionMailer::Base.smtp_settings = {
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.default charset: "utf-8"
 
-EMAIL = 'angelpadillam@gmail.com'
-SITE = 'autos.com'
+EMAIL = 'hola@listamotor.mx'
+SITE = 'listamotor.mx'
+TITLE = 'listamotor';
+TWITTER = "https://twitter.com/?lang=en";
+FACEBOOK = "https://twitter.com/?lang=en";
 
-Pins_per_page = 2
+PAGINATE = 100

@@ -1,4 +1,6 @@
 class PinsController < ApplicationController
+  include Tools
+  
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   # before_action :check_property, only: [:edit, :update]
   skip_before_action :authenticate_user!, only: [:show]
@@ -8,6 +10,7 @@ class PinsController < ApplicationController
   # GET /pins
   # GET /pins.json
   def index
+    redirect_to my_cars_path
     @pins = Pin.all.order(created_at: :desc)
     # admin check super or editor
   end
@@ -91,7 +94,7 @@ class PinsController < ApplicationController
     end
     @pin.destroy
     respond_to do |format|
-      format.html { redirect_to pins_url, notice: 'Destruido correctamente' }
+      format.html { redirect_to my_cars_path, notice: 'Destruido correctamente' }
       format.json { head :no_content }
     end
   end

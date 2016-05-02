@@ -1,42 +1,53 @@
-
-
-#notice {
-  color: green;
+.notice_container {
+  background-color: rgba(30,30,30,0.8);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  padding: 2.5rem 0;
+  text-align: center;
+  color: white;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
 }
 
+
+
+
+
+
+
+
 .field_with_errors {
+  width: 100%;
   padding: 2px;
   background-color: red;
-  display: table;
+  display: inline-block;
 }
 
 #error_explanation {
-  width: 450px;
-  border: 2px solid red;
+  // width: 450px;
+  width: 100%;
+  // border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
   margin-bottom: 20px;
-  background-color: #f0f0f0;
+  background-color: red;
   h2 {
-    text-align: left;
-    font-weight: bold;
+    text-align: center;
+    font-weight: 300;
     padding: 5px 5px 5px 15px;
     font-size: 12px;
     margin: -7px;
     margin-bottom: 0px;
-    background-color: #c00;
+    background-color: red;
     color: #fff;
   }
   ul li {
+    color: white;
     font-size: 12px;
-    list-style: square;
+    list-style: none;
   }
 }
-a {
-  &:hover{
-    text-decoration: none;
-  }
-  p {
-    color: black;
-  }
-}
+

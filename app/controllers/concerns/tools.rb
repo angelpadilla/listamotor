@@ -7,7 +7,7 @@ module Tools
 
 	def check_property(product)
 		unless current_user.id == product.user.id
-			redirect_to root_path
+			redirect_to root_path, notice: "error 9001"
 		end
 	end
 	def check_super

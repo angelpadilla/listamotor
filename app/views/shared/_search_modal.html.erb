@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade" id="filter_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Busqueda avanzada</h4>
+      </div>
+
+      <%= search_form_for(@q, url: index_path, html:{class: "", role: "search"}) do |f| %>
+        <div class="modal-body">
+            <div class="row">
+              <div class="col-lg-12">
+                <%= f.search_field :title_or_brand_title_or_state_title_cont, placeholder: 'busqueda ...', class: "form-control col-lg-12", id: "input-search-modal" %>
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="col-lg-4">
+                <%= f.collection_select :state_id_eq, @states, :id, :title, {prompt: 'Estado'}, class: "form-control" %>
+              </div>
+              <div class="col-lg-4">
+                <%= f.collection_select :brand_id_eq, @brands, :id, :title, {prompt: 'Marca'}, class: "form-control" %>
+              </div>
+              <div class="col-lg-4">
+                  <%= f.select :year_eq, 1886..(Date.today.year + 1), {prompt: 'Año'}, class: "form-control" %>
+              </div>
+            </div>
+            <div class="row">
+              
+              <div class="col-lg-6">
+                  <%= f.search_field :price_gteq, placeholder: "Precio min",  class: "form-control" %>
+              </div>
+              <div class="col-lg-6">
+                  <%= f.search_field :price_lteq, placeholder: "Precio max", class: "form-control" %>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit 'buscar', class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,9 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
 
-  # Roles = 'super', 'editor', 'normal'
+  Roles = 'super', 'editor', 'normal'
+  Facebook = "https://twitter.com/?lang=en"
+  Twitter = "https://twitter.com/?lang=en"
 
 
   def to_param

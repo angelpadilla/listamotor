@@ -1,11 +1,24 @@
-<% if params[:q] and @cars.empty?%>
-	<div class="row">
-		<div class="col-md-12 text-center">
-			<p>No hubo resultados :(</p>
+<%= render 'shared/nav_filter' %>
+
+
+<div class="container">
+	
+	<% if params and @cars.empty?%>
+		<div class="row">
+			<div class="col-md-12 text-center">
+				<p>No hubo resultados :(</p>
+			</div>
 		</div>
+	<% end %>
+
+
+	<div class="col-sm-12">
+		<%= render 'car' %>
 	</div>
-<% end %>
+	
+	<div class="col-sm-12 text-center">
+		<%= will_paginate @cars %>
+		
+	</div>
 
-<%= render 'car' %>
-
-
+</div>

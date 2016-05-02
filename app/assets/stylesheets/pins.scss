@@ -1,3 +1,70 @@
 // Place all the styles related to the Pins controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.slide {
+	padding: 15px;
+	border-radius: 2px;
+}
+
+.s-info {
+	.s-price {
+			p {font-size: 30px; text-align: center;}
+	}
+}
+.s-title {
+	font-size: 35px;
+	margin-top: 0;
+
+}
+
+.white-n-b {
+	background-color: white;
+	border-radius: 2px;
+	box-shadow: 2px 2px 5px -1px rgba(33, 33, 33, 0.2);
+}
+
+.like {
+	margin-top: 0.5rem;
+	img {
+		width: 2rem;
+	}
+}
+
+.s-desc {
+	.s-user-name {
+		margin: 2rem 0;
+		p {
+			color: #999999;
+		}
+		h4, p {display: inline-block;}
+	}
+}
+.s-details {
+	margin-top: 3rem;
+	.line {
+		margin: 1rem 0;
+		.key {color: #999}
+		.value {color: #333}
+	}
+}
+.s-disqus {
+	margin-top: 3rem;
+	padding: 2rem;
+	margin-bottom: 3rem;
+}
+.panel-user {
+	padding: 1rem;
+	div {
+		margin: 1rem 0;
+		a {
+			color: #999;
+			&:hover {color: #333;}
+			&.active {color: #333; font-size: 20px;}
+		}
+	}
+}
+
+
+
+
+

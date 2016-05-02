@@ -1,10 +1,10 @@
 		<% if user_signed_in? && current_user.likes?(pin) %>
-			<%= link_to destroy_like_path(pin), method: :delete, remote: true, class: "like", title: "Quitar de favoritos" do %>
+			<%= link_to destroy_like_path(pin), method: :delete, remote: true, class: "like btn btn-default btn-block", title: "Quitar de favoritos" do %>
 				<%= image_tag 'heart2.svg' %>
 			<% end %>
 		<% else %>
-			<%= link_to increase_like_path(pin), method: :post, remote: true, class: "like", title: "Agregar a favoritos" do %>
-				<%= image_tag 'heart.svg' %>
+			<%= link_to increase_like_path(pin), method: :post, remote: true, class: "like btn btn-default btn-block", title: "Agregar a favoritos" do %>
+				Añadir a favoritos
 			<% end %>
 		<% end %>
 

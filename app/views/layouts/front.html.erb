@@ -1,24 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OnePx</title>
+  <title><%= TITLE %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= render 'shared/nav_2' %>
+	<%= render 'shared/nav_2' %>
 
-<div class="container">
-	<% flash.each do |name, msg| %>
-		<div class="alert alert-info alert-dismissible">
-			<%= msg %>
+	<div class="container">
+		<% flash.each do |name, msg| %>
+			<div class="notice_container" id="notice">
+				<%= msg %>
+			</div>
+		<% end %>
+		
+		<%= yield %>
+	</div>
+	<footer class="container front">
+		<div class="front-icon">
+			<%= link_to User::Twitter do %>
+				<%= image_tag 'twitter.svg' %>
+			<% end %>
 		</div>
-	<% end %>
-	
-	<%= yield %>
-</div>
+		<div class="front-icon">
+			<%= link_to User::Facebook do %>
+				<%= image_tag 'face.svg' %>
+			<% end %>
+		</div>
+		<div class="front-icon">
+			<a href="mailto:<%= EMAIL %>">
+				<%= image_tag 'mail.svg' %>
+			</a>
+		</div>
+	</footer>
 
 
 </body>
