@@ -2,7 +2,36 @@
 
 
 <div class="container" style="margin-top: 3rem;">
-	<div class="store-section text-center">
+	<div class="store-section">
+		<div class="col-sm-12 text-center">
+			<div class="store-image">
+				<%= image_tag 'people11.svg' %>
+
+			</div>
+			<% if @store.name %>
+				<h2><%= @store.name %></h2>
+			<% end %>
+
+			<h3><%= @store.email %></h3>
+			<% if @store.phone %>
+				<p><%= number_to_phone @store.phone %></p> - 
+			<% end %>
+			<% if @store.city %>
+				<p><%= @store.city.capitalize %></p> - 
+			<% end %>
+			<% if @store.state %>
+				<p><%= @store.state.title %></p>
+			<% end %>
+		</div>
+	</div>
+
+	<div class="col-sm-12">
+		<%= render 'car' %>
+	</div>
+	
+	<div class="col-sm-12 text-center">
+		<%= will_paginate @cars %>
+		
 	</div>
 </div>
 

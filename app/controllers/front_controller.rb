@@ -10,10 +10,10 @@ class FrontController < ApplicationController
 
   # perfil usuario
   def show
-  	@pins = @store.pins
+  	@cars = @store.pins.order(created_at: :desc).paginate(page: params[:page], per_page: PAGINATE)
   end
 
-  # todas los usuarios
+  # todas los usuarios o tiendas
   def stores
     @stores = User.order(name: :desc)
   end

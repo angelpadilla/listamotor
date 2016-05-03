@@ -1,19 +1,26 @@
-<h2>Sign up</h2>
+<div class="container" style="margin-top: 3rem">
+  <div class="sign-up col-sm-12 col-md-4 white-n-b">
+    
+      <h2>Registro</h2>
+      <br>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
 
-  <div class="form-inputs">
-	  <%= f.input :name, required: true, autofocus: true, placeholder: 'Nombre', label: false %>
-    <%= f.input :email, required: true, placeholder: 'Email', label: false %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), placeholder: 'Contraseña', label: false %>
-    <%= f.input :password_confirmation, required: true, placeholder: 'Contraseña', label: false %>
+        <div class="form-inputs">
+      	  <%= f.input :name, required: true, autofocus: true, placeholder: 'Nombre', label: false %>
+          <%= f.input :email, required: true, placeholder: 'Email', label: false %>
+          <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), placeholder: 'Contraseña', label: false %>
+          <%= f.input :password_confirmation, required: true, placeholder: 'Contraseña', label: false %>
 
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Registro", class: "btn btn-primary btn-block" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Registro" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

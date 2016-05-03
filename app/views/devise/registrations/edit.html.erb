@@ -24,6 +24,10 @@
 
         <%= f.input :name, required: true, autofocus: true, label: false, placeholder: 'Nombre' %>
         <%= f.input :email, required: true, label: false, placeholder: 'Email' %>
+        <%= f.input :phone, label: false, placeholder: 'Telefono' %>
+        <%= f.input :state_id, collection: State.all, label: false, prompt: 'Estado' %>
+
+        <%= f.input :city, label: false, placeholder: 'ciudad' %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Actualmente esperando confirmación para: <%= resource.unconfirmed_email %></p>

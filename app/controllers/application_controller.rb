@@ -29,18 +29,15 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_up) << :name
       devise_parameter_sanitizer.for(:sign_up) << :captcha
   		devise_parameter_sanitizer.for(:sign_up) << :captcha_key
-      # devise_parameter_sanitizer.for(:sign_up) << :twitter
-      # devise_parameter_sanitizer.for(:sign_up) << :avatar
-  		# devise_parameter_sanitizer.for(:sign_up) << :role
       devise_parameter_sanitizer.for(:account_update) << :name
       devise_parameter_sanitizer.for(:account_update) << :captcha
-  		devise_parameter_sanitizer.for(:account_update) << :captcha_key
-      # devise_parameter_sanitizer.for(:account_update) << :twitter
-      # devise_parameter_sanitizer.for(:account_update) << :avatar
-      # devise_parameter_sanitizer.for(:account_update) << :web_profile
-  		# devise_parameter_sanitizer.for(:account_update) << :role
+      devise_parameter_sanitizer.for(:account_update) << :captcha_key
+      devise_parameter_sanitizer.for(:account_update) << :phone
+      devise_parameter_sanitizer.for(:account_update) << :city
+  		devise_parameter_sanitizer.for(:account_update) << :state_id
   	end
     def after_sign_in_path_for(resource)
       index_path
     end
+    
 end

@@ -12,7 +12,7 @@ module Tools
 	end
 	def check_super
 		unless current_user.is?(:super) or current_user.is?(:editor)
-			redirect_to root_path
+			redirect_to root_path, notice: "error 9002"
 		end
 	end
 end

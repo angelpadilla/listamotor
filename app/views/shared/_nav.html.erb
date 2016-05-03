@@ -25,7 +25,10 @@
 						<li>
 							<%= link_to 'Mis favoritos', likes_path %>
 						</li>
-						<li><%= link_to 'Mi perfil', store_path(current_user.id) %></li>
+            <li role="separator" class="divider"></li>
+
+							<li><%= link_to 'Mi perfil', store_path(current_user.id) %></li>
+							<li><%= link_to 'Editar mi perfil', edit_user_registration_path %></li>
 						
             <li role="separator" class="divider"></li>
             <li>

@@ -25,15 +25,15 @@ default: &default
   pool: 5
 
 ##### heroku 
-# development:
-#   <<: *default
-#   database: listamotor
-
 development:
-  adapter: sqlite3
-  pool: 5
-  timeout: 5000
-  database: db/development.sqlite3
+  <<: *default
+  database: listamotor
+
+# development:
+#   adapter: sqlite3
+#   pool: 5
+#   timeout: 5000
+#   database: db/development.sqlite3
 
 
 
