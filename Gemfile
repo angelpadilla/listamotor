@@ -25,6 +25,7 @@ group :development, :test do
 end
 
 gem 'pg'
+# gem 'sqlite'
 
 group :production do 
 	gem 'rails_12factor'
